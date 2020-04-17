@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Coronavirus Live Tracker</title>
+  </head>
+  <body style="background-color: lightskyblue;">
+    
+    <div class="container my-5">
+        <div class="row-sm-6 py-2">
+            <h1 class="text-center">
+                <span style="color: #585858;">Coronavirus Cases:</span>
+             </h1>
+              <h2 class="text-center">
+                 <span th:text="${#numbers.formatDecimal(global.cases, 0, 'COMMA', 0, 'POINT')}" class="text-dark">Total cases</span>
+             </h2>
+       </div>
+       <div class="row-sm-6 py-2">
+        <h1 class="text-center">
+            <span style="color: #585858;">Deaths:</span>
+         </h1>
+         <h2 class="text-center">
+            <span th:text="${#numbers.formatDecimal(global.deaths, 0, 'COMMA', 0, 'POINT')}" class="text-dark">Total deaths</span>
+         </h2>
+      </div>
+      <div class="row-sm-6 py-2 mb-4">
+        <h1 class="text-center">
+            <span style="color: #585858;">Recovered:</span>
+         </h1>
+         <h2 class="text-center">
+            <span th:text="${#numbers.formatDecimal(global.recovered, 0, 'COMMA', 0, 'POINT')}" class="text-success">Total recovered</span>
+         </h2>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Total Cases</th>
+            <th>New Cases</th>
+            <th>Total Deaths</th>
+            <th>New Deaths</th>
+            <th>Total Recovered</th>
+            <th>Active Cases</th>
+            <th>Serious Critical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="country: ${countries}">
+            <td th:text="${country.country}">Country Name</td>
+            <td th:text="${#numbers.formatDecimal(country.cases, 0, 'COMMA', 0, 'POINT')}">Total Cases</td>
+            <td th:text="${'+'} + ${#numbers.formatDecimal(country.todayCases, 0, 'COMMA', 0, 'POINT')}">New Cases</td>
+            <td th:text="${#numbers.formatDecimal(country.deaths, 0, 'COMMA', 0, 'POINT')}">Total Deaths</td>
+            <td th:text="${'+'} + ${#numbers.formatDecimal(country.todayDeaths, 0, 'COMMA', 0, 'POINT')}">New Deaths</td>
+            <td th:text="${#numbers.formatDecimal(country.recovered, 0, 'COMMA', 0, 'POINT')}">Total Recovered</td>
+            <td th:text="${#numbers.formatDecimal(country.active, 0, 'COMMA', 0, 'POINT')}">Active Cases</td>
+            <td th:text="${#numbers.formatDecimal(country.critical, 0, 'COMMA', 0, 'POINT')}">Serious Critical</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
