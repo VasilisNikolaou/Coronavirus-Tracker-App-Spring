@@ -14,10 +14,8 @@ import coronavirus.domain.Country;
 import coronavirus.domain.Global;
 import coronavirus.repository.CountryRepository;
 import coronavirus.repository.GlobalRepository;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class CoronaVirusDataService {
 
     private static final String VIRUS_GLOBAL_DATA = "https://coronavirus-19-api.herokuapp.com/all";
@@ -44,8 +42,8 @@ public class CoronaVirusDataService {
 		 
 		 globalRepo.save(global);
 		 
-		 Arrays.stream(countries, 7, 220)
-		    .forEach(country -> countryRepo.save(country));
+		Arrays.stream(countries)
+		   .forEach(country -> countryRepo.save(country));
 		
 	}
 }
