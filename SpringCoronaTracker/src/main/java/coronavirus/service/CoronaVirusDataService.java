@@ -42,7 +42,7 @@ public class CoronaVirusDataService {
 		 
 		 globalRepo.save(global);
 		 
-		Arrays.stream(countries)
+		 Arrays.stream(countries)
 		   .forEach(country -> countryRepo.save(country));
 		
 	}
